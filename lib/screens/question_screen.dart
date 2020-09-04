@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:questions_app/services/courses.dart';
 import 'package:questions_app/services/databaseService.dart';
+// import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 class QuestionPage extends StatelessWidget {
   QuestionPage({@required this.id});
@@ -39,10 +40,47 @@ class QuestionPage extends StatelessWidget {
             title: Text('${snapshot.data['title']}'),
             backgroundColor: Color(0xff445B83),
           ),
-          body: Center(
-            child: Text(
-              '${snapshot.data['question']}',
-              style: TextStyle(fontSize: 20.0),
+          body: Container(
+            padding: EdgeInsets.all(8),
+            width: double.infinity,
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      'images/buk.png',
+                      width: 50,
+                    ),
+                    Text(
+                      'BAYERO UNIVERSITY, KANO',
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'FACULTY OF COMPUTER SCIENCE AND INFORMATION TECHNOLOGY',
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      '${snapshot.data['id']} - (${snapshot.data['title']})',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  '${snapshot.data['question']}',
+                  style: TextStyle(wordSpacing: 3.0),
+                ),
+              ],
             ),
           ),
         );

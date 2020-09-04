@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: HomePage(),
       initialRoute: HomePage.id,
-      routes: <String, WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         HomePage.id: (BuildContext context) => HomePage(),
         LevelPage.id: (BuildContext context) => LevelPage(),
         CoursesPage.id: (BuildContext context) => CoursesPage(),
@@ -24,4 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
