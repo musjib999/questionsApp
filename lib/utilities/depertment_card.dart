@@ -45,4 +45,3 @@ class DepertmentCard extends StatelessWidget {
     );
   }
 }
-

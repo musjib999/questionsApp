@@ -70,7 +70,9 @@ class CoursesStreamBuilder extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return QuestionPage(id: documentId,);
+                    return QuestionPage(
+                      docId: documentId,
+                    );
                   },
                 ),
               );

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:questions_app/services/courses.dart';
 import 'package:questions_app/services/databaseService.dart';
-// import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 class QuestionPage extends StatelessWidget {
-  QuestionPage({@required this.id});
-  final id;
+  QuestionPage({@required this.docId});
+  final docId;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,9 @@ class QuestionPage extends StatelessWidget {
     } else {
       return null;
     }
+
     return FutureBuilder(
-      future: DatabaseService().getQuestion(id, collection),
+      future: DatabaseService().getQuestion(docId, collection),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Scaffold(
@@ -40,51 +41,46 @@ class QuestionPage extends StatelessWidget {
             title: Text('${snapshot.data['title']}'),
             backgroundColor: Color(0xff445B83),
           ),
-          body: Container(
-            padding: EdgeInsets.all(8),
-            width: double.infinity,
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      'images/buk.png',
-                      width: 50,
-                    ),
-                    Text(
-                      'BAYERO UNIVERSITY, KANO',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'FACULTY OF COMPUTER SCIENCE AND INFORMATION TECHNOLOGY',
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      '${snapshot.data['id']} - (${snapshot.data['title']})',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  '${snapshot.data['question']}',
-                  style: TextStyle(wordSpacing: 3.0),
-                ),
-              ],
-            ),
-          ),
+          body: QuestionPdf(),
         );
       },
+    );
+  }
+}
+
+class QuestionPdf extends StatefulWidget {
+  QuestionPdf({this.questionUrl});
+  String questionUrl;
+  @override
+  _QuestionPdfState createState() => _QuestionPdfState();
+}
+
+class _QuestionPdfState extends State<QuestionPdf> {
+  bool isLoading;
+  PDFDocument doc;
+
+  void getQuestionPdf() async {
+    setState(() {
+      isLoading = true;
+    });
+    doc = await PDFDocument.fromURL(
+        'https://firebasestorage.googleapis.com/v0/b/exam-past-question.appspot.com/o/CSC1303.pdf?alt=media&token=fae43df8-4efd-4c3f-81a3-62c164791a9f');
+    setState(() {
+      isLoading = true;
+    });
+  }
+
+  @override
+  initState() {
+    super.initState();
+    getQuestionPdf();
+  }
+
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(8),
+      width: double.infinity,
+      child: PDFViewer(document: doc),
     );
   }
 }
