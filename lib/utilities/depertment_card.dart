@@ -36,9 +36,11 @@ class DepertmentCard extends StatelessWidget {
               color: color,
             ),
           ),
-          Text(
-            title,
-            style: kCardTextStyle,
+          Flexible(
+            child: Text(
+              title,
+              style: kCardTextStyle,
+            ),
           ),
         ],
       ),

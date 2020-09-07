@@ -41,13 +41,16 @@ class QuestionPage extends StatelessWidget {
             title: Text('${snapshot.data['title']}'),
             backgroundColor: Color(0xff445B83),
           ),
-          body: QuestionPdf(),
+          body: QuestionPdf(
+            questionUrl: '${snapshot.data['question']}',
+          ),
         );
       },
     );
   }
 }
 
+// ignore: must_be_immutable
 class QuestionPdf extends StatefulWidget {
   QuestionPdf({this.questionUrl});
   String questionUrl;
@@ -63,10 +66,9 @@ class _QuestionPdfState extends State<QuestionPdf> {
     setState(() {
       isLoading = true;
     });
-    doc = await PDFDocument.fromURL(
-        'https://firebasestorage.googleapis.com/v0/b/exam-past-question.appspot.com/o/CSC1303.pdf?alt=media&token=fae43df8-4efd-4c3f-81a3-62c164791a9f');
+    doc = await PDFDocument.fromURL(widget.questionUrl);
     setState(() {
-      isLoading = true;
+      isLoading = false;
     });
   }
 
@@ -80,7 +82,11 @@ class _QuestionPdfState extends State<QuestionPdf> {
     return Container(
       padding: EdgeInsets.all(8),
       width: double.infinity,
-      child: PDFViewer(document: doc),
+      child: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : PDFViewer(
+              document: doc,
+            ),
     );
   }
 }
