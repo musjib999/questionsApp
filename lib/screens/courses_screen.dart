@@ -18,26 +18,6 @@ class _CoursesPageState extends State<CoursesPage> {
         title: Text('$semester Semester Courses'),
         backgroundColor: Color(0xff445B83),
       ),
-      // body: ListView.separated(
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return ListTile(
-      //       title: Text(
-      //         getCourses()[index].courseTitle,
-      //       ),
-      //       onTap: () {
-      //         Navigator.push(context, MaterialPageRoute(
-      //           builder: (context) {
-      //             return QuestionPage(
-      //               course: getCourses()[index],
-      //             );
-      //           },
-      //         ));
-      //       },
-      //     );
-      //   },
-      //   separatorBuilder: (BuildContext context, int index) => Divider(),
-      //     itemCount: getCourseItemCount(),
-      // ),
       body: CoursesStreamBuilder(),
     );
   }
@@ -51,9 +31,7 @@ class CoursesStreamBuilder extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.blueAccent,
-            ),
+            child: CircularProgressIndicator(),
           );
         }
         final titles = snapshot.data.documents;
