@@ -4,7 +4,6 @@ import 'package:questions_app/utilities/depertment_card.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:questions_app/services/depertment.dart';
 
-
 class HomePage extends StatefulWidget {
   static String id = 'home';
 
@@ -13,7 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,22 +31,8 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search',
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    Icons.search,
-                  ),
-                  onPressed: null,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-            ),
+          SizedBox(
+            height: 12.0,
           ),
           GestureDetector(
             child: DepertmentCard(

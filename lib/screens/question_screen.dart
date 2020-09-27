@@ -83,7 +83,9 @@ class _QuestionPdfState extends State<QuestionPdf> {
       padding: EdgeInsets.all(8),
       width: double.infinity,
       child: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
           : PDFViewer(
               document: doc,
             ),

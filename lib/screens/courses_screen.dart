@@ -23,7 +23,12 @@ class _CoursesPageState extends State<CoursesPage> {
   }
 }
 
-class CoursesStreamBuilder extends StatelessWidget {
+class CoursesStreamBuilder extends StatefulWidget {
+  @override
+  _CoursesStreamBuilderState createState() => _CoursesStreamBuilderState();
+}
+
+class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -35,7 +40,30 @@ class CoursesStreamBuilder extends StatelessWidget {
           );
         }
         final titles = snapshot.data.documents;
-        List<ListTile> coursesTitleWidgets = [];
+        List<Widget> coursesTitleWidgets = [
+          // Padding(
+          //   padding: const EdgeInsets.all(12.0),
+          //   child: TextField(
+          //     decoration: InputDecoration(
+          //       hintText: 'Search',
+          //       suffixIcon: IconButton(
+          //         icon: Icon(
+          //           Icons.search,
+          //         ),
+          //         onPressed: null,
+          //       ),
+          //       border: OutlineInputBorder(
+          //         borderRadius: BorderRadius.circular(15.0),
+          //       ),
+          //     ),
+          //     onChanged: (value) {
+          //       setState(() {
+          //         searchString = value.toLowerCase();
+          //       });
+          //     },
+          //   ),
+          // ),
+        ];
         for (var title in titles) {
           final courseTitle = title.data['title'];
           final courseCode = title.data['id'];

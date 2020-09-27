@@ -1,4 +1,4 @@
-class Course{
+class Course {
   String id;
   String courseTitle;
   String courseQuestion;

@@ -5,6 +5,7 @@ final _firestore = Firestore.instance;
 
 String semester;
 String level;
+String searchString;
 
 //levelOne courses
 var levelOneFirstSemesterCourses = _firestore.collection('courses').snapshots();
@@ -26,6 +27,32 @@ Stream<dynamic> getCoursesStream() {
     return levelTwoFirstSemesterCourses;
   } else if (level == 'Level 2' && semester == 'Second') {
     return levelTwoSecondSemesterCourses;
+  } else {
+    return null;
+  }
+}
+
+Stream getCoursesStreamSearch() {
+  if (level == 'Level 1' && semester == 'First') {
+    return _firestore
+        .collection('courses')
+        .where("searchIndex", arrayContains: searchString)
+        .snapshots();
+  } else if (level == 'Level 1' && semester == 'Second') {
+    return _firestore
+        .collection('levelOneSecondSemesterCourses')
+        .where("searchIndex", arrayContains: searchString)
+        .snapshots();
+  } else if (level == 'Level 2' && semester == 'First') {
+    return _firestore
+        .collection('levelTwoFirstSemesterCourses')
+        .where("searchIndex", arrayContains: searchString)
+        .snapshots();
+  } else if (level == 'Level 2' && semester == 'Second') {
+    return _firestore
+        .collection('levelTwoSecondSemesterCourses')
+        .where("searchIndex", arrayContains: searchString)
+        .snapshots();
   } else {
     return null;
   }
