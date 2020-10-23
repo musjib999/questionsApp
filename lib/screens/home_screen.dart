@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:questions_app/utilities/depertment_card.dart';
+import 'package:questions_app/widgets/depertment_card.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:questions_app/services/depertment.dart';
 
@@ -19,66 +19,71 @@ class _HomePageState extends State<HomePage> {
         title: Text('Past Questions'),
         backgroundColor: Color(0xff445B83),
       ),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.all(12.0),
-            child: TyperAnimatedTextKit(
-              text: ['Hi, what question are you looking for?'],
-              textStyle: TextStyle(
-                fontSize: 20.0,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(12.0),
+              child: TyperAnimatedTextKit(
+                text: ['Hi, what question are you looking for?'],
+                textStyle: TextStyle(
+                  fontSize: 20.0,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 12.0,
-          ),
-          GestureDetector(
-            child: DepertmentCard(
-              color: Color(0xff0597dc),
-              title: depertments[0],
-              icon: Icons.code,
+            SizedBox(
+              height: 8.0,
             ),
-            onTap: () {
-              Navigator.pushNamed(context, 'level');
-              depertment = depertments[0];
-            },
-          ),
-          GestureDetector(
-            child: DepertmentCard(
-              color: Color(0xff516696),
-              title: depertments[1],
-              icon: FontAwesomeIcons.laptop,
+            GestureDetector(
+              child: DepertmentCard(
+                color: Color(0xff0597dc),
+                title: depertments[0],
+                icon: Icons.code,
+                boxShadowColor: Color(0xff0597dc).withOpacity(0.5),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, 'level');
+                depertment = depertments[0];
+              },
             ),
-            onTap: () {
-              Navigator.pushNamed(context, 'level');
-              depertment = depertments[1];
-            },
-          ),
-          GestureDetector(
-            child: DepertmentCard(
-              color: Color(0xffFE8656),
-              title: depertments[2],
-              icon: FontAwesomeIcons.lock,
+            GestureDetector(
+              child: DepertmentCard(
+                color: Color(0xff516696),
+                title: depertments[1],
+                icon: FontAwesomeIcons.laptop,
+                boxShadowColor: Color(0xff516696).withOpacity(0.5),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, 'level');
+                depertment = depertments[1];
+              },
             ),
-            onTap: () {
-              Navigator.pushNamed(context, 'level');
-              depertment = depertments[2];
-            },
-          ),
-          GestureDetector(
-            child: DepertmentCard(
-              color: Color(0xff9677EF),
-              title: depertments[3],
-              icon: FontAwesomeIcons.chartLine,
+            GestureDetector(
+              child: DepertmentCard(
+                color: Color(0xff1e70eb),
+                title: depertments[2],
+                icon: FontAwesomeIcons.lock,
+                boxShadowColor: Color(0xff1e70eb).withOpacity(0.5),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, 'level');
+                depertment = depertments[2];
+              },
             ),
-            onTap: () {
-              Navigator.pushNamed(context, 'level');
-              depertment = depertments[3];
-            },
-          ),
-        ],
+            GestureDetector(
+              child: DepertmentCard(
+                color: Color(0xff9677EF),
+                title: depertments[3],
+                icon: FontAwesomeIcons.chartLine,
+                boxShadowColor: Color(0xff9677EF).withOpacity(0.5),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, 'level');
+                depertment = depertments[3];
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

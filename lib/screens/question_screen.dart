@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:questions_app/screens/unavailableCourses_screen.dart';
 import 'package:questions_app/services/courses.dart';
 import 'package:questions_app/services/databaseService.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
@@ -62,22 +63,29 @@ class _QuestionPdfState extends State<QuestionPdf> {
   bool isLoading;
   PDFDocument doc;
 
+  void initState() {
+    super.initState();
+    getQuestionPdf();
+    // _delayTime();
+  }
+
+  void errorPage() {
+    Navigator.pushNamed(context, NoCoursesPage.id);
+  }
+
   void getQuestionPdf() async {
     setState(() {
       isLoading = true;
     });
+
     doc = await PDFDocument.fromURL(widget.questionUrl);
+
     setState(() {
       isLoading = false;
     });
   }
 
   @override
-  initState() {
-    super.initState();
-    getQuestionPdf();
-  }
-
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8),

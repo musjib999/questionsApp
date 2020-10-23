@@ -15,6 +15,13 @@ class SemesterCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Color(0xff445B83),
         borderRadius: BorderRadius.circular(12.0),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xff445B83).withOpacity(0.5),
+            spreadRadius: 3,
+            blurRadius: 7,
+          ),
+        ],
       ),
       child: Center(
         child: Text(
