@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:questions_app/constants.dart';
+import 'package:pastQ/constants.dart';
 
 class DepertmentCard extends StatelessWidget {
   DepertmentCard({this.title, this.icon, this.color, this.boxShadowColor});

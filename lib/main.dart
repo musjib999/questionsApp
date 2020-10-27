@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:questions_app/screens/courses_screen.dart';
-import 'package:questions_app/screens/levels_screen.dart';
-import 'package:questions_app/screens/semester_screen.dart';
-import 'package:questions_app/screens/unavailableCourses_screen.dart';
+import 'package:pastQ/screens/courses_screen.dart';
+import 'package:pastQ/screens/levels_screen.dart';
+import 'package:pastQ/screens/semester_screen.dart';
+import 'package:pastQ/screens/unavailableCourses_screen.dart';
 import 'screens/home_screen.dart';
 
 void main() => runApp(MyApp());

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:questions_app/widgets/depertment_card.dart';
+import 'package:pastQ/widgets/depertment_card.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:questions_app/services/depertment.dart';
+import 'package:pastQ/services/depertment.dart';
 
 class HomePage extends StatefulWidget {
   static String id = 'home';
