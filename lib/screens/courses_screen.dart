@@ -40,30 +40,7 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
           );
         }
         final titles = snapshot.data.documents;
-        List<Widget> coursesTitleWidgets = [
-          // Padding(
-          //   padding: const EdgeInsets.all(12.0),
-          //   child: TextField(
-          //     decoration: InputDecoration(
-          //       hintText: 'Search',
-          //       suffixIcon: IconButton(
-          //         icon: Icon(
-          //           Icons.search,
-          //         ),
-          //         onPressed: null,
-          //       ),
-          //       border: OutlineInputBorder(
-          //         borderRadius: BorderRadius.circular(15.0),
-          //       ),
-          //     ),
-          //     onChanged: (value) {
-          //       setState(() {
-          //         searchString = value.toLowerCase();
-          //       });
-          //     },
-          //   ),
-          // ),
-        ];
+        List<Widget> coursesTitleWidgets = [];
         for (var title in titles) {
           final courseTitle = title.data['title'];
           final courseCode = title.data['id'];

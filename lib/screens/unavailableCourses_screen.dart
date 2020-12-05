@@ -8,12 +8,12 @@ class NoCoursesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Unavaibalbe'),
+        title: Text('Unavailable'),
         backgroundColor: Color(0xff445B83),
       ),
       body: Center(
         child: Text(
-          'Question is not yet available',
+          'Courses are not yet available',
           style: TextStyle(
             color: Colors.red,
             fontSize: 24.0,

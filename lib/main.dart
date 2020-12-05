@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pastQ/screens/courses_screen.dart';
-import 'package:pastQ/screens/levels_screen.dart';
-import 'package:pastQ/screens/semester_screen.dart';
-import 'package:pastQ/screens/unavailableCourses_screen.dart';
+import 'package:pastQ/routes/routes.dart';
 import 'screens/home_screen.dart';
 
 void main() => runApp(MyApp());
@@ -15,13 +12,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: HomePage(),
       initialRoute: HomePage.id,
-      routes: <String, WidgetBuilder>{
-        HomePage.id: (BuildContext context) => HomePage(),
-        LevelPage.id: (BuildContext context) => LevelPage(),
-        CoursesPage.id: (BuildContext context) => CoursesPage(),
-        SemesterPage.id: (BuildContext context) => SemesterPage(),
-        NoCoursesPage.id: (BuildContext context) => NoCoursesPage(),
-      },
+      theme: ThemeData(
+        primaryColor: Color(0xff445B83),
+        accentColor: Color(0xff445B83),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      routes: myRoutes,
     );
   }
 }

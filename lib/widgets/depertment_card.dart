@@ -11,17 +11,18 @@ class DepertmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(12.0),
-      padding: EdgeInsets.only(top: 5, bottom: 5),
+      margin: EdgeInsets.all(15.0),
+      padding: EdgeInsets.all(4),
       width: double.infinity,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
-            color: boxShadowColor,
+            color: boxShadowColor.withOpacity(0.15),
+            offset: Offset(0, 2.5),
             spreadRadius: 3,
-            blurRadius: 7,
+            blurRadius: 5,
           ),
         ],
       ),
@@ -47,6 +48,8 @@ class DepertmentCard extends StatelessWidget {
           Flexible(
             child: Text(
               title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
               style: kCardTextStyle,
             ),
           ),
