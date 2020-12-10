@@ -29,10 +29,15 @@ class CoursesStreamBuilder extends StatefulWidget {
 }
 
 class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
+  final _firestore = Firestore.instance;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: getCoursesStream(),
+      stream: _firestore
+          .collection('Software Engineering')
+          .document(level)
+          .collection(semester)
+          .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -43,7 +48,7 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
         List<Widget> coursesTitleWidgets = [];
         for (var title in titles) {
           final courseTitle = title.data['title'];
-          final courseCode = title.data['id'];
+          final courseCode = title.data['courseCode'];
           final documentId = title.documentID;
           final courseTitleWidget = ListTile(
             title: Text('$courseTitle'),

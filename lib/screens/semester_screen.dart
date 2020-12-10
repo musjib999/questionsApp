@@ -27,7 +27,7 @@ class _SemesterPageState extends State<SemesterPage> {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return CoursesPage();
               }));
-              semester = 'First';
+              semester = 'First Semester';
             },
           ),
           GestureDetector(
@@ -36,7 +36,7 @@ class _SemesterPageState extends State<SemesterPage> {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return CoursesPage();
               }));
-              semester = 'Second';
+              semester = 'Second Semester';
             },
           ),
         ],

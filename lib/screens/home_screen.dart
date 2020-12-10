@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pastQ/screens/levels_screen.dart';
 import 'package:pastQ/widgets/depertment_card.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:pastQ/services/depertment.dart';
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                 boxShadowColor: Color(0xff0597dc).withOpacity(0.5),
               ),
               onTap: () {
-                Navigator.pushNamed(context, 'level');
+                Navigator.pushNamed(context, LevelPage.id);
                 depertment = depertments[0];
               },
             ),
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                 boxShadowColor: Color(0xff516696).withOpacity(0.5),
               ),
               onTap: () {
-                Navigator.pushNamed(context, 'level');
+                Navigator.pushNamed(context, LevelPage.id);
                 depertment = depertments[1];
               },
             ),
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 boxShadowColor: Color(0xff1e70eb).withOpacity(0.5),
               ),
               onTap: () {
-                Navigator.pushNamed(context, 'level');
+                Navigator.pushNamed(context, LevelPage.id);
                 depertment = depertments[2];
               },
             ),
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                 boxShadowColor: Color(0xff9677EF).withOpacity(0.5),
               ),
               onTap: () {
-                Navigator.pushNamed(context, 'level');
+                Navigator.pushNamed(context, LevelPage.id);
                 depertment = depertments[3];
               },
             ),

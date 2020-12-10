@@ -10,21 +10,21 @@ class QuestionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    dynamic collection;
-    if (level == 'Level 1' && semester == 'First') {
-      collection = 'courses';
-    } else if (level == 'Level 1' && semester == 'Second') {
-      collection = 'levelOneSecondSemesterCourses';
-    } else if (level == 'Level 2' && semester == 'First') {
-      collection = 'levelTwoFirstSemesterCourses';
-    } else if (level == 'Level 2' && semester == 'Second') {
-      collection = 'levelTwoSecondSemesterCourses';
-    } else {
-      return null;
-    }
+    // dynamic collection;
+    // if (level == 'Level 1' && semester == 'First') {
+    //   collection = 'courses';
+    // } else if (level == 'Level 1' && semester == 'Second') {
+    //   collection = 'levelOneSecondSemesterCourses';
+    // } else if (level == 'Level 2' && semester == 'First') {
+    //   collection = 'levelTwoFirstSemesterCourses';
+    // } else if (level == 'Level 2' && semester == 'Second') {
+    //   collection = 'levelTwoSecondSemesterCourses';
+    // } else {
+    //   return null;
+    // }
 
     return FutureBuilder(
-      future: DatabaseService().getQuestion(docId, collection),
+      future: DatabaseService().getQuestion(docId),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Scaffold(
