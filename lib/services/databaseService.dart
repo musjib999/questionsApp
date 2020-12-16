@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pastQ/services/courses.dart';
+import 'package:pastQ/services/depertment.dart';
 
 class DatabaseService {
   Future getQuestion(id) async {
     try {
-      final coursesCollection =
-          Firestore.instance.collection('Software Engineering');
+      final coursesCollection = Firestore.instance.collection(depertment);
       var snapshot = await coursesCollection
           .document(level)
           .collection(semester)

@@ -38,7 +38,8 @@ class _LevelPageState extends State<LevelPage> {
               title: Text('Level 2'),
               onTap: () {
                 level = 'Level 2';
-                if (depertment == depertments[0]) {
+                if (depertment == depertments[0] ||
+                    depertment == depertments[3]) {
                   Navigator.pushNamed(context, SemesterPage.id);
                 } else {
                   Navigator.pushNamed(context, NoCoursesPage.id);

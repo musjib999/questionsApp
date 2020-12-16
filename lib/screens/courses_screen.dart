@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pastQ/screens/question_screen.dart';
 import 'package:pastQ/services/courses.dart';
+import 'package:pastQ/services/depertment.dart';
 
 class CoursesPage extends StatefulWidget {
   static String id = 'courses';
@@ -34,7 +35,7 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore
-          .collection('Software Engineering')
+          .collection(depertment)
           .document(level)
           .collection(semester)
           .snapshots(),

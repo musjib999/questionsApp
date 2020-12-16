@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pastQ/screens/unavailableCourses_screen.dart';
-import 'package:pastQ/services/courses.dart';
 import 'package:pastQ/services/databaseService.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
@@ -10,19 +9,6 @@ class QuestionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // dynamic collection;
-    // if (level == 'Level 1' && semester == 'First') {
-    //   collection = 'courses';
-    // } else if (level == 'Level 1' && semester == 'Second') {
-    //   collection = 'levelOneSecondSemesterCourses';
-    // } else if (level == 'Level 2' && semester == 'First') {
-    //   collection = 'levelTwoFirstSemesterCourses';
-    // } else if (level == 'Level 2' && semester == 'Second') {
-    //   collection = 'levelTwoSecondSemesterCourses';
-    // } else {
-    //   return null;
-    // }
-
     return FutureBuilder(
       future: DatabaseService().getQuestion(docId),
       builder: (context, snapshot) {
