@@ -20,4 +20,18 @@ class DatabaseService {
 
     // print(data);
   }
+
+  Stream<QuerySnapshot> getPastQuestionYear(year) {
+    final _firestore = Firestore.instance;
+    var snapshot = _firestore
+        .collection(
+            level == 'Level 1' ? depertment = depertments[0] : depertment)
+        .document(level)
+        .collection(semester)
+        .where("year", isEqualTo: "$year")
+        .snapshots();
+    return snapshot;
+
+    // print(data);
+  }
 }
