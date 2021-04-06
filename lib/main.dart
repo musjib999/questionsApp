@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pastQ/routes/routes.dart';
+import 'package:pastQ/screens/splash_screen.dart';
 import 'screens/home_screen.dart';
 
 void main() => runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
-      initialRoute: HomePage.id,
+      initialRoute: SplashScreen.id,
       theme: ThemeData(
         primaryColor: Color(0xff445B83),
         accentColor: Color(0xff445B83),
