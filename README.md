@@ -1,6 +1,6 @@
 # pastQ
 
-A new Flutter project.
+PastQ gives you easy access to past examination questions at your convenient place and time.
 
 ## Getting Started
 
