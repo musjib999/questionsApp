@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pastQ/helpers/dropdown_helper.dart';
-import 'package:pastQ/screens/question_screen.dart';
-import 'package:pastQ/services/courses.dart';
-import 'package:pastQ/services/databaseService.dart';
+import 'package:pastq/helpers/dropdown_helper.dart';
+import 'package:pastq/screens/question_screen.dart';
+import 'package:pastq/services/courses.dart';
+import 'package:pastq/services/databaseService.dart';
 
 class CoursesPage extends StatefulWidget {
   static String id = 'courses';

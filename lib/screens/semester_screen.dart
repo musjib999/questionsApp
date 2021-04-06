@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pastQ/screens/courses_screen.dart';
+import 'package:pastq/screens/courses_screen.dart';
 // import 'package:questions_app/services/level.dart';
-import 'package:pastQ/services/courses.dart';
-import 'package:pastQ/widgets/semester_card.dart';
+import 'package:pastq/services/courses.dart';
+import 'package:pastq/widgets/semester_card.dart';
 
 class SemesterPage extends StatefulWidget {
   static String id = 'semester';

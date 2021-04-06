@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pastQ/constants.dart';
+import 'package:pastq/constants.dart';
 
 class SemesterCard extends StatelessWidget {
   SemesterCard({this.title});

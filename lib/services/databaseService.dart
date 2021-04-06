@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pastQ/services/courses.dart';
-import 'package:pastQ/services/depertment.dart';
+import 'package:pastq/services/courses.dart';
+import 'package:pastq/services/depertment.dart';
 
 class DatabaseService {
   Future getQuestion(id) async {

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pastQ/screens/home_screen.dart';
+import 'package:pastq/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String id = '/SplashScreen';

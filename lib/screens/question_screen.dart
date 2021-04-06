@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pastQ/screens/unavailableCourses_screen.dart';
-import 'package:pastQ/services/databaseService.dart';
+import 'package:pastq/screens/unavailableCourses_screen.dart';
+import 'package:pastq/services/databaseService.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 class QuestionPage extends StatelessWidget {

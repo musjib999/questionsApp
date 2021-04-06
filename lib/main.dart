@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pastQ/routes/routes.dart';
-import 'package:pastQ/screens/splash_screen.dart';
+import 'package:pastq/routes/routes.dart';
+import 'package:pastq/screens/splash_screen.dart';
 import 'screens/home_screen.dart';
 
 void main() => runApp(MyApp());
