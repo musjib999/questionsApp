@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pastq/screens/semester_screen.dart';
 import 'package:pastq/screens/unavailableCourses_screen.dart';
 // import 'package:questions_app/services/level.dart';
-import 'package:pastq/services/courses.dart';
-import 'package:pastq/services/depertment.dart';
+import 'package:pastq/shared/globals/global_var.dart';
 
 class LevelPage extends StatefulWidget {
   static String id = 'level';

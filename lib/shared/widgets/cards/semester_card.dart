@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pastq/constants.dart';
+import 'package:pastq/shared/themes/constants.dart';
 
 class SemesterCard extends StatelessWidget {
-  SemesterCard({this.title});
+  SemesterCard({required this.title});
   final String title;
 
   @override

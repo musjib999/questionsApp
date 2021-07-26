@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pastq/screens/courses_screen.dart';
 // import 'package:questions_app/services/level.dart';
-import 'package:pastq/services/courses.dart';
-import 'package:pastq/widgets/semester_card.dart';
+import 'package:pastq/shared/globals/global_var.dart';
+import 'package:pastq/shared/widgets/cards/semester_card.dart';
 
 class SemesterPage extends StatefulWidget {
   static String id = 'semester';
@@ -33,9 +33,14 @@ class _SemesterPageState extends State<SemesterPage> {
           GestureDetector(
             child: SemesterCard(title: 'Second Semester'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return CoursesPage();
-              }));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return CoursesPage();
+                  },
+                ),
+              );
               semester = 'Second Semester';
             },
           ),

@@ -1,9 +1,12 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pastq/helpers/dropdown_helper.dart';
+import 'package:pastq/core/service_injector/service_injector.dart';
 import 'package:pastq/screens/question_screen.dart';
-import 'package:pastq/services/courses.dart';
-import 'package:pastq/services/databaseService.dart';
+import 'package:pastq/core/services/dropdown_service.dart';
+import 'package:pastq/screens/search_screen.dart';
+import 'package:pastq/shared/globals/global_var.dart';
+import 'package:pastq/core/services/database_service.dart';
 
 class CoursesPage extends StatefulWidget {
   static String id = 'courses';
@@ -13,25 +16,19 @@ class CoursesPage extends StatefulWidget {
 }
 
 class _CoursesPageState extends State<CoursesPage> {
-  DropDownHelper _dropDownHelper = DropDownHelper();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('$semester'),
+        title: Text(depertment == 'General Studies and Enterpreneurship'
+            ? 'General Studies and Enterpreneurship'
+            : '$semester'),
         backgroundColor: Color(0xff445B83),
         actions: [
-          // IconButton(
-          //   icon: Icon(
-          //     Icons.calendar_today,
-          //     color: Colors.white,
-          //   ),
-          //   onPressed: null,
-          // ),
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: DropdownButton(
-              items: _dropDownHelper.getYearDropdownItems(),
+            child: DropdownButton<dynamic>(
+              items: pastQservice.dropDownHelper.getYearDropdownItems(),
               onChanged: (value) {
                 setState(() {
                   selectedYear = value;
@@ -39,10 +36,19 @@ class _CoursesPageState extends State<CoursesPage> {
                 print(selectedYear);
               },
               icon: Icon(
-                Icons.calendar_today,
+                Icons.filter_alt,
                 color: Colors.white,
               ),
               underline: Container(),
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              pastQservice.routerService.nextRoute(context, SearchScreen());
+            },
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
             ),
           ),
         ],
@@ -62,27 +68,21 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _databaseService.getPastQuestionYear(selectedYear),
-      // stream: _firestore
-      //     .collection(
-      //         level == 'Level 1' ? depertment = depertments[0] : depertment)
-      //     .document(level)
-      //     .collection(semester)
-      //     .where("year", isEqualTo: "${_dropDownHelper.selectedYear}")
-      //     .snapshots(),
+      stream: (depertment == 'General Studies and Enterpreneurship')
+          ? _databaseService.getGspPastQuestionByYear(selectedYear)
+          : _databaseService.getPastQuestionByYear(selectedYear),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(),
           );
         }
-        final documents = snapshot.data.documents;
+        final documents = snapshot.data!.docs;
         List<Widget> coursesTitleWidgets = [];
         for (var title in documents) {
-          final courseTitle = title.data['title'];
-          final courseCode = title.data['courseCode'];
-          // print(courseTitle);
-          final documentId = title.documentID;
+          final courseTitle = title['title'];
+          final courseCode = title['courseCode'];
+          final documentId = title.id;
           final courseTitleWidget = ListTile(
             title: Text('$courseTitle'),
             subtitle: Text('$courseCode'),
@@ -108,18 +108,3 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
     );
   }
 }
-
-// void _showDialog() {
-//                             showDialog<int>(
-//                               context: context,
-//                               builder: (BuildContext context) {
-//                                 return NumberPickerDialog.integer(
-//                                   initialIntegerValue:
-//                                       (_currentPage != null) ? _currentPage : 1,
-//                                   minValue: 1,
-//                                   maxValue: research.data['research']['nPages'],
-//                                   // onChanged: (value) {
-
-//                                   // },
-//                                 );
-//                               },

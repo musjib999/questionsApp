@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pastq/core/service_injector/service_injector.dart';
 import 'package:pastq/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,9 +15,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(
-      Duration(seconds: 5),
+      Duration(seconds: 4),
       () {
-        Navigator.pushReplacementNamed(context, HomePage.id);
+        pastQservice.routerService.popUntil(
+          context,
+          HomePage(),
+        );
       },
     );
     super.initState();

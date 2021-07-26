@@ -1,4 +1,7 @@
-String depertment;
+String semester = '';
+String level = '';
+
+String depertment = '';
 
 List<String> depertments = [
   'Software Engineering',

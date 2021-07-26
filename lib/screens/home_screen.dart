@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pastq/core/service_injector/service_injector.dart';
+import 'package:pastq/screens/courses_screen.dart';
 import 'package:pastq/screens/levels_screen.dart';
-import 'package:pastq/widgets/depertment_card.dart';
+import 'package:pastq/screens/upload_screen.dart';
+import 'package:pastq/shared/globals/global_var.dart';
+import 'package:pastq/shared/widgets/cards/depertment_card.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:pastq/services/depertment.dart';
 
 class HomePage extends StatefulWidget {
-  static String id = 'home';
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -37,13 +38,25 @@ class _HomePageState extends State<HomePage> {
             ),
             GestureDetector(
               child: DepertmentCard(
+                color: Colors.green,
+                title: 'General Studies And Entrepreneurship',
+                icon: FontAwesomeIcons.brain,
+                boxShadowColor: Colors.green.withOpacity(0.5),
+              ),
+              onTap: () {
+                depertment = 'General Studies and Enterpreneurship';
+                pastQservice.routerService.nextRoute(context, CoursesPage());
+              },
+            ),
+            GestureDetector(
+              child: DepertmentCard(
                 color: Color(0xff0597dc),
                 title: depertments[0],
                 icon: Icons.code,
                 boxShadowColor: Color(0xff0597dc).withOpacity(0.5),
               ),
               onTap: () {
-                Navigator.pushNamed(context, LevelPage.id);
+                pastQservice.routerService.nextRoute(context, LevelPage());
                 depertment = depertments[0];
               },
             ),
@@ -55,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                 boxShadowColor: Color(0xff516696).withOpacity(0.5),
               ),
               onTap: () {
-                Navigator.pushNamed(context, LevelPage.id);
+                pastQservice.routerService.nextRoute(context, LevelPage());
                 depertment = depertments[1];
               },
             ),
@@ -67,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 boxShadowColor: Color(0xff1e70eb).withOpacity(0.5),
               ),
               onTap: () {
-                Navigator.pushNamed(context, LevelPage.id);
+                pastQservice.routerService.nextRoute(context, LevelPage());
                 depertment = depertments[2];
               },
             ),
@@ -79,12 +92,19 @@ class _HomePageState extends State<HomePage> {
                 boxShadowColor: Color(0xff9677EF).withOpacity(0.5),
               ),
               onTap: () {
-                Navigator.pushNamed(context, LevelPage.id);
+                pastQservice.routerService.nextRoute(context, LevelPage());
                 depertment = depertments[3];
               },
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.upload_file),
+        label: Text('Upload PastQ'),
+        onPressed: () {
+          pastQservice.routerService.nextRoute(context, Upload());
+        },
       ),
     );
   }

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pastq/constants.dart';
+import 'package:pastq/shared/themes/constants.dart';
 
 class DepertmentCard extends StatelessWidget {
-  DepertmentCard({this.title, this.icon, this.color, this.boxShadowColor});
+  DepertmentCard(
+      {required this.title,
+      required this.icon,
+      required this.color,
+      this.boxShadowColor});
   final IconData icon;
   final String title;
   final Color color;
-  final Color boxShadowColor;
+  final Color? boxShadowColor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class DepertmentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
-            color: boxShadowColor.withOpacity(0.15),
+            color: boxShadowColor!.withOpacity(0.15),
             offset: Offset(0, 2.5),
             spreadRadius: 3,
             blurRadius: 5,
