@@ -1,7 +1,6 @@
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:pastq/core/service_injector/service_injector.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Upload extends StatefulWidget {
   static String id = '/upload';
