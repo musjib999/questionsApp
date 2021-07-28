@@ -3,6 +3,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:pastq/core/service_injector/service_injector.dart';
 import 'package:pastq/shared/models/course_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pastq/screens/question_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -50,7 +51,15 @@ class _SearchScreenState extends State<SearchScreen> {
                         title: Text(course.title),
                       );
                     },
-                    onSuggestionSelected: (Course? suggestion) {},
+                    onSuggestionSelected: (Course? suggestion) {
+                      pastQservice.routerService.nextRoute(
+                          context,
+                          QuestionPage(
+                            courseTitle: suggestion!.title,
+                            questionUrl: suggestion.questionUrl,
+                          ));
+                      print(suggestion.questionUrl);
+                    },
                   ),
                 ),
                 SizedBox(height: 20),

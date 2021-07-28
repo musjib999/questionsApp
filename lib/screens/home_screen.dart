@@ -39,33 +39,21 @@ class _HomePageState extends State<HomePage> {
             GestureDetector(
               child: DepertmentCard(
                 color: Colors.green,
-                title: 'General Studies And Entrepreneurship',
+                title: depertments[0],
                 icon: FontAwesomeIcons.brain,
                 boxShadowColor: Colors.green.withOpacity(0.5),
               ),
               onTap: () {
-                depertment = 'General Studies and Enterpreneurship';
+                depertment = depertments[0];
                 pastQservice.routerService.nextRoute(context, CoursesPage());
               },
             ),
             GestureDetector(
               child: DepertmentCard(
                 color: Color(0xff0597dc),
-                title: depertments[0],
+                title: depertments[1],
                 icon: Icons.code,
                 boxShadowColor: Color(0xff0597dc).withOpacity(0.5),
-              ),
-              onTap: () {
-                pastQservice.routerService.nextRoute(context, LevelPage());
-                depertment = depertments[0];
-              },
-            ),
-            GestureDetector(
-              child: DepertmentCard(
-                color: Color(0xff516696),
-                title: depertments[1],
-                icon: FontAwesomeIcons.laptop,
-                boxShadowColor: Color(0xff516696).withOpacity(0.5),
               ),
               onTap: () {
                 pastQservice.routerService.nextRoute(context, LevelPage());
@@ -74,10 +62,10 @@ class _HomePageState extends State<HomePage> {
             ),
             GestureDetector(
               child: DepertmentCard(
-                color: Color(0xff1e70eb),
+                color: Color(0xff516696),
                 title: depertments[2],
-                icon: FontAwesomeIcons.lock,
-                boxShadowColor: Color(0xff1e70eb).withOpacity(0.5),
+                icon: FontAwesomeIcons.laptop,
+                boxShadowColor: Color(0xff516696).withOpacity(0.5),
               ),
               onTap: () {
                 pastQservice.routerService.nextRoute(context, LevelPage());
@@ -86,14 +74,26 @@ class _HomePageState extends State<HomePage> {
             ),
             GestureDetector(
               child: DepertmentCard(
-                color: Color(0xff9677EF),
+                color: Color(0xff1e70eb),
                 title: depertments[3],
+                icon: FontAwesomeIcons.lock,
+                boxShadowColor: Color(0xff1e70eb).withOpacity(0.5),
+              ),
+              onTap: () {
+                pastQservice.routerService.nextRoute(context, LevelPage());
+                depertment = depertments[3];
+              },
+            ),
+            GestureDetector(
+              child: DepertmentCard(
+                color: Color(0xff9677EF),
+                title: depertments[4],
                 icon: FontAwesomeIcons.chartLine,
                 boxShadowColor: Color(0xff9677EF).withOpacity(0.5),
               ),
               onTap: () {
                 pastQservice.routerService.nextRoute(context, LevelPage());
-                depertment = depertments[3];
+                depertment = depertments[4];
               },
             ),
           ],

@@ -20,13 +20,13 @@ class _CoursesPageState extends State<CoursesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(depertment == 'General Studies and Enterpreneurship'
+        title: Text(depertment == depertments[0]
             ? 'General Studies and Enterpreneurship'
             : '$semester'),
         backgroundColor: Color(0xff445B83),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.only(right: 5.0),
             child: DropdownButton<dynamic>(
               items: pastQservice.dropDownHelper.getYearDropdownItems(),
               onChanged: (value) {
@@ -49,6 +49,7 @@ class _CoursesPageState extends State<CoursesPage> {
             icon: Icon(
               Icons.search,
               color: Colors.white,
+              semanticLabel: 'Search',
             ),
           ),
         ],
@@ -68,21 +69,23 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: (depertment == 'General Studies and Enterpreneurship')
+      stream: (depertment == depertments[0])
           ? _databaseService.getGspPastQuestionByYear(selectedYear)
           : _databaseService.getPastQuestionByYear(selectedYear),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: Color(0xff445B83),
+            ),
           );
         }
         final documents = snapshot.data!.docs;
         List<Widget> coursesTitleWidgets = [];
-        for (var title in documents) {
-          final courseTitle = title['title'];
-          final courseCode = title['courseCode'];
-          final documentId = title.id;
+        for (var course in documents) {
+          final String courseTitle = course['title'];
+          final courseCode = course['courseCode'];
+          final String questionUrl = course['question'];
           final courseTitleWidget = ListTile(
             title: Text('$courseTitle'),
             subtitle: Text('$courseCode'),
@@ -92,7 +95,8 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
                 MaterialPageRoute(
                   builder: (context) {
                     return QuestionPage(
-                      docId: documentId,
+                      courseTitle: courseTitle,
+                      questionUrl: questionUrl,
                     );
                   },
                 ),

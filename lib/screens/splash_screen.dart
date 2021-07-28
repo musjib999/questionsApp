@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Center(
                 child: Container(
-                  child: Image.asset('images/logo2.png', width: 70),
+                  child: Image.asset('assets/images/logo2.png', width: 70),
                 ),
               ),
               // Expanded(child: Container()),
