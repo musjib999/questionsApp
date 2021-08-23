@@ -14,8 +14,16 @@ class QuestionPage extends StatelessWidget {
         title: Text('$courseTitle'),
         backgroundColor: Color(0xff445B83),
       ),
-      body: QuestionPdf(
-        questionUrl: '$questionUrl',
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: QuestionPdf(
+          questionUrl: '$questionUrl',
+        ),
       ),
     );
   }
@@ -62,6 +70,12 @@ class _QuestionPdfState extends State<QuestionPdf> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/background.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
       padding: EdgeInsets.all(8),
       width: double.infinity,
       child: isLoading

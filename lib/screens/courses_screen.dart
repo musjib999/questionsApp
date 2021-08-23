@@ -10,6 +10,11 @@ import 'package:pastq/core/services/database_service.dart';
 
 class CoursesPage extends StatefulWidget {
   static String id = 'courses';
+  final String depertment;
+  final String? level;
+  final String? semester;
+
+  CoursesPage({required this.depertment, this.level, this.semester});
 
   @override
   _CoursesPageState createState() => _CoursesPageState();
@@ -20,9 +25,9 @@ class _CoursesPageState extends State<CoursesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(depertment == depertments[0]
+        title: Text(widget.depertment == depertments[0]
             ? 'General Studies and Enterpreneurship'
-            : '$semester'),
+            : '${widget.semester}'),
         backgroundColor: Color(0xff445B83),
         actions: [
           Padding(
@@ -54,12 +59,21 @@ class _CoursesPageState extends State<CoursesPage> {
           ),
         ],
       ),
-      body: CoursesStreamBuilder(),
+      body: CoursesStreamBuilder(
+        depertment: widget.depertment,
+        level: widget.level,
+        semester: widget.semester,
+      ),
     );
   }
 }
 
 class CoursesStreamBuilder extends StatefulWidget {
+  final String depertment;
+  final String? level;
+  final String? semester;
+
+  CoursesStreamBuilder({required this.depertment, this.level, this.semester});
   @override
   _CoursesStreamBuilderState createState() => _CoursesStreamBuilderState();
 }
@@ -69,14 +83,28 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: (depertment == depertments[0])
-          ? _databaseService.getGspPastQuestionByYear(selectedYear)
-          : _databaseService.getPastQuestionByYear(selectedYear),
+      stream: (widget.depertment == depertments[0])
+          ? _databaseService.getGspPastQuestionByYear(
+              widget.depertment, selectedYear)
+          : _databaseService.getPastQuestionByYear(
+              deperment: widget.depertment,
+              level: widget.level!,
+              semester: widget.semester!,
+              year: selectedYear,
+            ),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(
-              color: Color(0xff445B83),
+          return Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/background.png'),
+                fit: BoxFit.fill,
+              ),
+            ),
+            child: Center(
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
             ),
           );
         }
@@ -87,8 +115,14 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
           final courseCode = course['courseCode'];
           final String questionUrl = course['question'];
           final courseTitleWidget = ListTile(
-            title: Text('$courseTitle'),
-            subtitle: Text('$courseCode'),
+            title: Text(
+              '$courseTitle',
+              style: TextStyle(color: Colors.white),
+            ),
+            subtitle: Text(
+              '$courseCode',
+              style: TextStyle(color: Colors.white),
+            ),
             onTap: () {
               Navigator.push(
                 context,
@@ -105,8 +139,16 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
           );
           coursesTitleWidgets.add(courseTitleWidget);
         }
-        return ListView(
-          children: coursesTitleWidgets,
+        return Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background.png'),
+              fit: BoxFit.fill,
+            ),
+          ),
+          child: ListView(
+            children: coursesTitleWidgets,
+          ),
         );
       },
     );

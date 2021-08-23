@@ -8,20 +8,6 @@ import 'package:pastq/shared/models/course_model.dart';
 import 'dropdown_service.dart';
 
 class DatabaseService {
-  //get single past question
-  Future<DocumentSnapshot> getQuestion(id) async {
-    try {
-      final coursesCollection = firestore.collection(depertment);
-      var snapshot =
-          await coursesCollection.doc(level).collection(semester).doc(id).get();
-      return snapshot;
-    } catch (e) {
-      print("Error >> $e");
-    }
-    throw 'Null';
-    // print(data);
-  }
-
   Future addPastQuestion(Map<String, dynamic> data) async {
     dynamic document;
     try {
@@ -37,7 +23,7 @@ class DatabaseService {
   }
 
   //get past all past questions by year
-  Stream<QuerySnapshot> getGspPastQuestionByYear(year) {
+  Stream<QuerySnapshot> getGspPastQuestionByYear(depertment, year) {
     Stream<QuerySnapshot>? snapshot;
     try {
       snapshot = firestore
@@ -54,16 +40,23 @@ class DatabaseService {
   }
 
   // //get past all past questions by year
-  Stream<QuerySnapshot> getPastQuestionByYear(year) {
+  Stream<QuerySnapshot> getPastQuestionByYear(
+      {required String deperment,
+      required String level,
+      required String semester,
+      required String year}) {
     Stream<QuerySnapshot>? snapshot;
     try {
       snapshot = firestore
           .collection(
-              level == 'Level 1' ? depertment = depertments[0] : depertment)
+              level == 'Level 1' ? depertment = depertments[1] : depertment)
           .doc(level)
           .collection(semester)
           .where("year", isEqualTo: "$year")
           .snapshots();
+      snapshot.forEach((element) {
+        print(element.docs.length);
+      });
     } catch (err) {
       print('Error getting past questions by year >> $err');
     }

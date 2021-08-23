@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pastq/shared/themes/constants.dart';
 
 class SemesterCard extends StatelessWidget {
   SemesterCard({required this.title});
@@ -9,24 +8,21 @@ class SemesterCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.all(12.0),
+      margin: EdgeInsets.all(15.0),
       padding: EdgeInsets.all(50.0),
       decoration: BoxDecoration(
-        color: Color(0xff445B83),
+        image: DecorationImage(
+          image: AssetImage('assets/images/cardBackground.png'),
+          fit: BoxFit.cover,
+        ),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0xff445B83).withOpacity(0.5),
-            offset: Offset(0, 2.5),
-            spreadRadius: 3,
-            blurRadius: 4,
-          ),
-        ],
       ),
       child: Center(
         child: Text(
           title,
-          style: kCardTextStyle,
+          style: TextStyle(
+              color: Colors.black, fontSize: 25.0, fontWeight: FontWeight.bold),
         ),
       ),
     );
