@@ -1,13 +1,14 @@
 class Course {
   final String title;
+  final String questionUrl;
 
   const Course({
     required this.title,
+    required this.questionUrl,
   });
 
-  static Course fromJson(Map<String, dynamic> json) => Course(
-        title: json['title'],
-      );
+  static Course fromJson(Map<String, dynamic> json) =>
+      Course(title: json['title'], questionUrl: json['question']);
 }
 
 // class UserApi {

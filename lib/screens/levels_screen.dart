@@ -1,68 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:pastq/screens/semester_screen.dart';
-import 'package:pastq/screens/unavailableCourses_screen.dart';
-// import 'package:questions_app/services/level.dart';
 import 'package:pastq/shared/globals/global_var.dart';
 
 class LevelPage extends StatefulWidget {
   static String id = 'level';
+  final String depertment;
+  LevelPage(this.depertment);
 
   @override
   _LevelPageState createState() => _LevelPageState();
 }
 
 class _LevelPageState extends State<LevelPage> {
+  List levels = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(depertment),
+        title: Text(widget.depertment),
         backgroundColor: Color(0xff445B83),
       ),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: [
-            ListTile(
-              contentPadding: EdgeInsets.all(9.0),
-              title: Text('Level 1'),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: ListView.separated(
+          itemCount: levels.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(
+                levels[index],
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
-                Navigator.pushNamed(context, SemesterPage.id);
-                level = 'Level 1';
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      level = levels[index];
+                      return SemesterPage(
+                        depertment: widget.depertment,
+                        level: levels[index],
+                      );
+                    },
+                  ),
+                );
               },
-            ),
-            ListTile(
-              contentPadding: EdgeInsets.all(15.0),
-              title: Text('Level 2'),
-              onTap: () {
-                level = 'Level 2';
-                if (depertment == depertments[0] ||
-                    depertment == depertments[3]) {
-                  Navigator.pushNamed(context, SemesterPage.id);
-                } else {
-                  Navigator.pushNamed(context, NoCoursesPage.id);
-                }
-              },
-            ),
-            ListTile(
-              contentPadding: EdgeInsets.all(15.0),
-              title: Text('Level 3'),
-              onTap: () {
-                level = 'Level 3';
-                Navigator.pushNamed(context, NoCoursesPage.id);
-              },
-            ),
-            ListTile(
-              contentPadding: EdgeInsets.all(15.0),
-              title: Text('Level 4'),
-              onTap: () {
-                level = 'Level 4';
-                Navigator.pushNamed(context, NoCoursesPage.id);
-              },
-            ),
-          ],
-        ).toList(),
+            );
+          },
+          separatorBuilder: (context, index) => Divider(
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

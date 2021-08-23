@@ -6,6 +6,7 @@ class ServiceInjector {
   FilePickerHelper filePickerHelper = FilePickerHelper();
 
   RouterService routerService = RouterService();
+  DialogInfoService dialogInfoService = DialogInfoService();
 }
 
 ServiceInjector pastQservice = ServiceInjector();

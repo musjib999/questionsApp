@@ -1,9 +1,9 @@
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:pastq/core/service_injector/service_injector.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Upload extends StatefulWidget {
-  static String id = '/upload';
   @override
   _UploadState createState() => _UploadState();
 }
@@ -14,13 +14,13 @@ class _UploadState extends State<Upload> {
   String year = '';
   final _formKey = GlobalKey<FormState>();
   TextEditingController _courseCodeController = TextEditingController();
-  TextEditingController _courseNameController = TextEditingController();
+  TextEditingController _courseTitleController = TextEditingController();
   TextEditingController _yearController = TextEditingController();
 
   void clearFields() {
     setState(() {
       _courseCodeController.clear();
-      _courseNameController.clear();
+      _courseTitleController.clear();
     });
   }
 
@@ -128,9 +128,6 @@ class _UploadState extends State<Upload> {
                     hintText: 'Course Code',
                   ),
                   maxLength: 7,
-                  onChanged: (value) {
-                    courseCode = value;
-                  },
                 ),
                 SizedBox(height: 15),
                 TextFormField(
@@ -141,14 +138,11 @@ class _UploadState extends State<Upload> {
                       return null;
                     }
                   },
-                  controller: _courseNameController,
+                  controller: _courseTitleController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Course Name',
                   ),
-                  onChanged: (value) {
-                    courseTitle = value;
-                  },
                 ),
                 SizedBox(
                   height: 15,
@@ -168,9 +162,6 @@ class _UploadState extends State<Upload> {
                   ),
                   maxLength: 4,
                   keyboardType: TextInputType.datetime,
-                  onChanged: (value) {
-                    year = value;
-                  },
                 ),
                 SizedBox(
                   height: 15,
@@ -237,49 +228,40 @@ class _UploadState extends State<Upload> {
                   height: 45,
                   color: Color(0xff445B83),
                   onTap: (startLoading, stopLoading, btnState) async {
-                    // if (_formKey.currentState.validate()) {
-                    //   _formKey.currentState.save();
-                    startLoading();
-                    // await pastQservice.databaseService
-                    //     .uploadPastQ(
-                    //   filePath: pastQservice.filePickerHelper.selectedfile,
-                    //   fileName: courseCode,
-                    //   courseTitle: courseTitle,
-                    //   depertment:
-                    //       pastQservice.dropDownHelper.selectedDepertment,
-                    //   level: pastQservice.dropDownHelper.selectedLevel,
-                    //   semester: pastQservice.dropDownHelper.selectedSemester,
-                    //   context: context,
-                    //   year: _yearController.text,
-                    // )
-                    //     .then((value) {
-                    //   Alert(
-                    //     context: context,
-                    //     type: AlertType.success,
-                    //     // image: Image.file(user.image),
-                    //     title: "SUCCESS",
-                    //     desc:
-                    //         "Your document has been uploaded and will be reviewed within 24hrs",
-                    //     buttons: [
-                    //       DialogButton(
-                    //         child: Text(
-                    //           "Continue",
-                    //           style:
-                    //               TextStyle(color: Colors.white, fontSize: 20),
-                    //         ),
-                    //         onPressed: () {
-                    //           clearFields();
-                    //           Navigator.pop(context);
-                    //         },
-                    //         width: 120,
-                    //       )
-                    //     ],
-                    //   ).show().then((value) {
-                    //     stopLoading();
-                    //     clearFields();
-                    //   });
-                    // });
-                    // }
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      startLoading();
+                      await pastQservice.databaseService
+                          .uploadPastQuestion(
+                        filePath: pastQservice.filePickerHelper.selectedfile,
+                        fileName: _courseCodeController.text,
+                        courseTitle: _courseTitleController.text,
+                        depertment:
+                            pastQservice.dropDownHelper.selectedDepertment,
+                        level: pastQservice.dropDownHelper.selectedLevel,
+                        semester: pastQservice.dropDownHelper.selectedSemester,
+                        year: _yearController.text,
+                      )
+                          .then((url) {
+                        pastQservice.databaseService.addPastQuestion({
+                          'courseCode': _courseCodeController.text,
+                          'title': _courseTitleController.text,
+                          'question': url,
+                          'year': _yearController.text,
+                          'status': 0
+                        }).then((value) {
+                          stopLoading();
+                          pastQservice.dialogInfoService.showDialog(
+                            title: 'Success',
+                            subtitle:
+                                'Past Question uploaded and will be reviewd within the next 24hrs',
+                            alertType: AlertType.success,
+                            context: context,
+                          );
+                        });
+                        clearFields();
+                      });
+                    }
                   },
                   loader: Container(
                     margin: EdgeInsets.all(15),

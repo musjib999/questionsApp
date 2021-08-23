@@ -1,59 +1,30 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pastq/screens/unavailableCourses_screen.dart';
-import 'package:pastq/core/services/database_service.dart';
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
 class QuestionPage extends StatelessWidget {
-  QuestionPage({@required this.docId});
-  final docId;
+  QuestionPage({required this.courseTitle, required this.questionUrl});
+  final String courseTitle;
+  final String questionUrl;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<DocumentSnapshot>(
-      future: DatabaseService().getQuestion(docId),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Center(
-            child: Text(
-              "Something went wrong",
-              style: TextStyle(color: Colors.red, fontSize: 20),
-            ),
-          );
-        }
-
-        if (snapshot.hasData && !snapshot.data!.exists) {
-          return Text(
-            "Document does not exist",
-            style: TextStyle(color: Colors.red, fontSize: 20),
-          );
-        }
-
-        if (snapshot.connectionState == ConnectionState.done) {
-          var data = snapshot.data!.data() as Map<String, dynamic>;
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('${data['title']}'),
-              backgroundColor: Color(0xff445B83),
-            ),
-            body: QuestionPdf(
-              questionUrl: '${data['question']}',
-            ),
-          );
-        }
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('Loading...'),
-            backgroundColor: Color(0xff445B83),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('$courseTitle'),
+        backgroundColor: Color(0xff445B83),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.fill,
           ),
-          body: Center(
-            child: CircularProgressIndicator(
-              color: Color(0xff445B83),
-            ),
-          ),
-        );
-      },
+        ),
+        child: QuestionPdf(
+          questionUrl: '$questionUrl',
+        ),
+      ),
     );
   }
 }
@@ -99,11 +70,19 @@ class _QuestionPdfState extends State<QuestionPdf> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/background.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
       padding: EdgeInsets.all(8),
       width: double.infinity,
       child: isLoading
           ? Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
             )
           : PDFViewer(
               document: doc,

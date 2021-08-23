@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pastq/core/service_injector/service_injector.dart';
 import 'package:pastq/screens/courses_screen.dart';
 import 'package:pastq/screens/levels_screen.dart';
@@ -21,82 +20,108 @@ class _HomePageState extends State<HomePage> {
         title: Text('Past Questions'),
         backgroundColor: Color(0xff445B83),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(12.0),
-              child: TyperAnimatedTextKit(
-                text: ['Hi, what question are you looking for?'],
-                textStyle: TextStyle(
-                  fontSize: 20.0,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(12.0),
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      'Hi, what question are you looking for?',
+                      speed: const Duration(milliseconds: 80),
+                      textStyle: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                  displayFullTextOnTap: true,
                 ),
               ),
-            ),
-            SizedBox(
-              height: 8.0,
-            ),
-            GestureDetector(
-              child: DepertmentCard(
-                color: Colors.green,
-                title: 'General Studies And Entrepreneurship',
-                icon: FontAwesomeIcons.brain,
-                boxShadowColor: Colors.green.withOpacity(0.5),
+              SizedBox(
+                height: 8.0,
               ),
-              onTap: () {
-                depertment = 'General Studies and Enterpreneurship';
-                pastQservice.routerService.nextRoute(context, CoursesPage());
-              },
-            ),
-            GestureDetector(
-              child: DepertmentCard(
-                color: Color(0xff0597dc),
-                title: depertments[0],
-                icon: Icons.code,
-                boxShadowColor: Color(0xff0597dc).withOpacity(0.5),
+              GestureDetector(
+                child: DepertmentCard(
+                  color: Colors.white,
+                  title: depertments[0],
+                  icon: 'assets/svg/gsp.svg',
+                  boxShadowColor: Colors.green.withOpacity(0.5),
+                ),
+                onTap: () {
+                  depertment = depertments[0];
+
+                  pastQservice.routerService.nextRoute(
+                      context,
+                      CoursesPage(
+                        depertment: depertments[0],
+                      ));
+                },
               ),
-              onTap: () {
-                pastQservice.routerService.nextRoute(context, LevelPage());
-                depertment = depertments[0];
-              },
-            ),
-            GestureDetector(
-              child: DepertmentCard(
-                color: Color(0xff516696),
-                title: depertments[1],
-                icon: FontAwesomeIcons.laptop,
-                boxShadowColor: Color(0xff516696).withOpacity(0.5),
+              GestureDetector(
+                child: DepertmentCard(
+                  color: Color(0xff0597dc),
+                  title: depertments[1],
+                  icon: 'assets/svg/swe.svg',
+                  boxShadowColor: Color(0xff0597dc).withOpacity(0.5),
+                ),
+                onTap: () {
+                  depertment = depertments[1];
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return LevelPage(depertments[1]);
+                  }));
+                },
               ),
-              onTap: () {
-                pastQservice.routerService.nextRoute(context, LevelPage());
-                depertment = depertments[1];
-              },
-            ),
-            GestureDetector(
-              child: DepertmentCard(
-                color: Color(0xff1e70eb),
-                title: depertments[2],
-                icon: FontAwesomeIcons.lock,
-                boxShadowColor: Color(0xff1e70eb).withOpacity(0.5),
+              GestureDetector(
+                child: DepertmentCard(
+                  color: Color(0xff516696),
+                  title: depertments[2],
+                  icon: 'assets/svg/csc.svg',
+                  boxShadowColor: Color(0xff516696).withOpacity(0.5),
+                ),
+                onTap: () {
+                  depertment = depertments[2];
+
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return LevelPage(depertments[2]);
+                  }));
+                },
               ),
-              onTap: () {
-                pastQservice.routerService.nextRoute(context, LevelPage());
-                depertment = depertments[2];
-              },
-            ),
-            GestureDetector(
-              child: DepertmentCard(
-                color: Color(0xff9677EF),
-                title: depertments[3],
-                icon: FontAwesomeIcons.chartLine,
-                boxShadowColor: Color(0xff9677EF).withOpacity(0.5),
+              GestureDetector(
+                child: DepertmentCard(
+                  color: Color(0xff1e70eb),
+                  title: depertments[3],
+                  icon: 'assets/svg/cbs.svg',
+                  boxShadowColor: Color(0xff1e70eb).withOpacity(0.5),
+                ),
+                onTap: () {
+                  depertment = depertments[3];
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return LevelPage(depertments[3]);
+                  }));
+                },
               ),
-              onTap: () {
-                pastQservice.routerService.nextRoute(context, LevelPage());
-                depertment = depertments[3];
-              },
-            ),
-          ],
+              GestureDetector(
+                child: DepertmentCard(
+                  color: Color(0xff9677EF),
+                  title: depertments[4],
+                  icon: 'assets/svg/ift.svg',
+                  boxShadowColor: Color(0xff9677EF).withOpacity(0.5),
+                ),
+                onTap: () {
+                  depertment = depertments[4];
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return LevelPage(depertments[4]);
+                  }));
+                },
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
