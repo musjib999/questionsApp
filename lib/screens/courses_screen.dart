@@ -84,8 +84,7 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: (widget.depertment == depertments[0])
-          ? _databaseService.getGspPastQuestionByYear(
-              widget.depertment, selectedYear)
+          ? _databaseService.getGspPastQuestionByYear(selectedYear)
           : _databaseService.getPastQuestionByYear(
               deperment: widget.depertment,
               level: widget.level!,
@@ -146,9 +145,23 @@ class _CoursesStreamBuilderState extends State<CoursesStreamBuilder> {
               fit: BoxFit.fill,
             ),
           ),
-          child: ListView(
-            children: coursesTitleWidgets,
-          ),
+          child: coursesTitleWidgets.length < 1
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: Text(
+                      'The past question you are looking for is currently not available',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                      ),
+                    ),
+                  ),
+                )
+              : ListView(
+                  children: coursesTitleWidgets,
+                ),
         );
       },
     );

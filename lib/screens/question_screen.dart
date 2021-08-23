@@ -80,7 +80,9 @@ class _QuestionPdfState extends State<QuestionPdf> {
       width: double.infinity,
       child: isLoading
           ? Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
             )
           : PDFViewer(
               document: doc,

@@ -23,7 +23,7 @@ class DatabaseService {
   }
 
   //get past all past questions by year
-  Stream<QuerySnapshot> getGspPastQuestionByYear(depertment, year) {
+  Stream<QuerySnapshot> getGspPastQuestionByYear(year) {
     Stream<QuerySnapshot>? snapshot;
     try {
       snapshot = firestore

@@ -20,59 +20,68 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         title: Text('Search'),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.all(15),
-            child: Column(
-              children: [
-                SizedBox(height: 5),
-                Material(
-                  elevation: 5.0,
-                  borderRadius: BorderRadius.circular(8),
-                  child: TypeAheadField(
-                    textFieldConfiguration: TextFieldConfiguration(
-                      decoration: InputDecoration(
-                        hintText: 'Search...',
-                        prefixIcon: Icon(Icons.search),
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        contentPadding: EdgeInsets.only(
-                          bottom: 11,
-                          top: 11,
+      body: Container(
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  SizedBox(height: 5),
+                  Material(
+                    elevation: 5.0,
+                    borderRadius: BorderRadius.circular(8),
+                    child: TypeAheadField(
+                      textFieldConfiguration: TextFieldConfiguration(
+                        decoration: InputDecoration(
+                          hintText: 'Search...',
+                          prefixIcon: Icon(Icons.search),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.only(
+                            bottom: 11,
+                            top: 11,
+                          ),
                         ),
                       ),
-                    ),
-                    suggestionsCallback:
-                        pastQservice.databaseService.getQuestionSuggestion,
-                    itemBuilder: (context, Course? suggestion) {
-                      final course = suggestion!;
-                      return ListTile(
-                        title: Text(course.title),
-                      );
-                    },
-                    onSuggestionSelected: (Course? suggestion) {
-                      pastQservice.routerService.nextRoute(
-                          context,
-                          QuestionPage(
-                            courseTitle: suggestion!.title,
-                            questionUrl: suggestion.questionUrl,
-                          ));
-                      print(suggestion.questionUrl);
-                    },
-                  ),
-                ),
-                SizedBox(height: 20),
-                Center(
-                  child: Container(
-                    child: SvgPicture.asset(
-                      assetName,
-                      semanticsLabel: 'Search',
-                      height: 300,
+                      suggestionsCallback:
+                          pastQservice.databaseService.getQuestionSuggestion,
+                      itemBuilder: (context, Course? suggestion) {
+                        final course = suggestion!;
+                        return ListTile(
+                          title: Text(course.title),
+                        );
+                      },
+                      onSuggestionSelected: (Course? suggestion) {
+                        pastQservice.routerService.nextRoute(
+                            context,
+                            QuestionPage(
+                              courseTitle: suggestion!.title,
+                              questionUrl: suggestion.questionUrl,
+                            ));
+                        print(suggestion.questionUrl);
+                      },
                     ),
                   ),
-                )
-              ],
+                  SizedBox(height: 20),
+                  Center(
+                    child: Container(
+                      child: SvgPicture.asset(
+                        assetName,
+                        semanticsLabel: 'Search',
+                        height: 300,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
