@@ -5,7 +5,7 @@ import 'package:pastq/core/service_injector/service_injector.dart';
 import 'package:pastq/screens/question_screen.dart';
 import 'package:pastq/core/services/dropdown_service.dart';
 import 'package:pastq/screens/search_screen.dart';
-import 'package:pastq/shared/globals/global_var.dart';
+import 'package:pastq/shared/global/global_var.dart';
 import 'package:pastq/core/services/database_service.dart';
 
 class CoursesPage extends StatefulWidget {

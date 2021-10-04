@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pastq/screens/semester_screen.dart';
-import 'package:pastq/shared/globals/global_var.dart';
+import 'package:pastq/shared/global/global_var.dart';
 
 class LevelPage extends StatefulWidget {
   static String id = 'level';

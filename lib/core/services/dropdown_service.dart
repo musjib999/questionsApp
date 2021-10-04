@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pastq/shared/globals/global_var.dart';
+import 'package:pastq/shared/global/global_var.dart';
 
 dynamic selectedYear = '2019';
 

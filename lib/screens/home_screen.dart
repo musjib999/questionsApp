@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pastq/core/service_injector/service_injector.dart';
 import 'package:pastq/screens/courses_screen.dart';
 import 'package:pastq/screens/levels_screen.dart';
-import 'package:pastq/screens/upload_screen.dart';
-import 'package:pastq/shared/globals/global_var.dart';
+import 'package:pastq/shared/global/global_var.dart';
 import 'package:pastq/shared/widgets/cards/depertment_card.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -21,6 +20,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xff445B83),
       ),
       body: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background.png'),
@@ -124,13 +124,13 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.upload_file),
-        label: Text('Upload PastQ'),
-        onPressed: () {
-          pastQservice.routerService.nextRoute(context, Upload());
-        },
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   icon: Icon(Icons.upload_file),
+      //   label: Text('Upload PastQ'),
+      //   onPressed: () {
+      //     pastQservice.routerService.nextRoute(context, Upload());
+      //   },
+      // ),
     );
   }
 }

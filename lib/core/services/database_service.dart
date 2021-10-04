@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pastq/shared/globals/config.dart';
-import 'package:pastq/shared/globals/global_var.dart';
+import 'package:pastq/shared/global/config.dart';
+import 'package:pastq/shared/global/global_var.dart';
 import 'package:pastq/shared/models/course_model.dart';
 
 import 'dropdown_service.dart';
