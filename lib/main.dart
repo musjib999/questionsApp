@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
       initialRoute: SplashScreen.id,
       theme: ThemeData(
         primaryColor: Color(0xff445B83),
-        accentColor: Color(0xff445B83),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: Color(0xff445B83)),
       ),
       routes: myRoutes,
     );
