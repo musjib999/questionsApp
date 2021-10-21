@@ -11,12 +11,20 @@ class NoCoursesPage extends StatelessWidget {
         title: Text('Unavailable'),
         backgroundColor: Color(0xff445B83),
       ),
-      body: Center(
-        child: Text(
-          'Courses are not yet available',
-          style: TextStyle(
-            color: Colors.red,
-            fontSize: 24.0,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: Center(
+          child: Text(
+            'Courses are not yet available',
+            style: TextStyle(
+              color: Colors.red,
+              fontSize: 24.0,
+            ),
           ),
         ),
       ),

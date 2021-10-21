@@ -1,0 +1,22 @@
+[
+    {
+        "name": "General Studies And Entrepreneurship",
+        "svg": "assets/svg/gsp.svg"
+    },
+    {
+        "name": "Computer Science",
+        "svg": "assets/svg/csc.svg"
+    },
+    {
+        "name": "Cyber Security",
+        "svg": "assets/svg/cbs.svg"
+    },
+    {
+        "name": "Software Engineering",
+        "svg": "assets/svg/swe.svg"
+    },
+    {
+        "name": "Information Technology",
+        "svg": "assets/svg/ift.svg"
+    }
+]

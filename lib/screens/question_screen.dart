@@ -1,53 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:pastq/screens/unavailableCourses_screen.dart';
-import 'package:pastq/services/databaseService.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
 class QuestionPage extends StatelessWidget {
-  QuestionPage({@required this.docId});
-  final docId;
+  QuestionPage({required this.courseTitle, required this.questionUrl});
+  final String courseTitle;
+  final String questionUrl;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: DatabaseService().getQuestion(docId),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Loading...'),
-              backgroundColor: Color(0xff445B83),
-            ),
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('${snapshot.data['title']}'),
-            backgroundColor: Color(0xff445B83),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('$courseTitle'),
+        backgroundColor: Color(0xff445B83),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.fill,
           ),
-          body: QuestionPdf(
-            questionUrl: '${snapshot.data['question']}',
-          ),
-        );
-      },
+        ),
+        child: QuestionPdf(
+          questionUrl: '$questionUrl',
+        ),
+      ),
     );
   }
 }
 
 // ignore: must_be_immutable
 class QuestionPdf extends StatefulWidget {
-  QuestionPdf({this.questionUrl});
+  QuestionPdf({required this.questionUrl});
   String questionUrl;
   @override
   _QuestionPdfState createState() => _QuestionPdfState();
 }
 
 class _QuestionPdfState extends State<QuestionPdf> {
-  bool isLoading;
-  PDFDocument doc;
+  bool isLoading = false;
+  late PDFDocument doc;
 
   void initState() {
     super.initState();
@@ -60,29 +52,66 @@ class _QuestionPdfState extends State<QuestionPdf> {
   }
 
   void getQuestionPdf() async {
-    setState(() {
-      isLoading = true;
-    });
+    try {
+      setState(() {
+        isLoading = true;
+      });
 
-    doc = await PDFDocument.fromURL(widget.questionUrl);
+      doc = await PDFDocument.fromURL(widget.questionUrl);
 
-    setState(() {
-      isLoading = false;
-    });
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      print('Err >>> $e');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/background.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
       padding: EdgeInsets.all(8),
       width: double.infinity,
       child: isLoading
           ? Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
             )
           : PDFViewer(
               document: doc,
+              pickerButtonColor: Color(0xff445B83),
+              zoomSteps: 3,
             ),
     );
   }
 }
+
+
+//  if (!snapshot.hasData) {
+//           return Scaffold(
+//             appBar: AppBar(
+//               title: Text('Loading...'),
+//               backgroundColor: Color(0xff445B83),
+//             ),
+//             body: Center(
+//               child: CircularProgressIndicator(),
+//             ),
+//           );
+//         }
+//         return Scaffold(
+//           appBar: AppBar(
+//             title: Text('${snapshot.data}'),
+//             backgroundColor: Color(0xff445B83),
+//           ),
+//           // body: QuestionPdf(
+//           //   questionUrl: '${snapshot.data}',
+//           // ),
+//         );
+//       },

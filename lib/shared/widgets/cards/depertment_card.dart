@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:pastq/constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pastq/shared/themes/constants.dart';
 
 class DepertmentCard extends StatelessWidget {
-  DepertmentCard({this.title, this.icon, this.color, this.boxShadowColor});
-  final IconData icon;
+  DepertmentCard({
+    required this.title,
+    required this.icon,
+    required this.color,
+  });
+  final String icon;
   final String title;
   final Color color;
-  final Color boxShadowColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(15.0),
+      margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
       padding: EdgeInsets.all(4),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: color,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
-          BoxShadow(
-            color: boxShadowColor.withOpacity(0.15),
-            offset: Offset(0, 2.5),
-            spreadRadius: 3,
-            blurRadius: 5,
-          ),
-        ],
       ),
       child: Row(
         children: <Widget>[
@@ -39,10 +35,12 @@ class DepertmentCard extends StatelessWidget {
               color: Colors.white,
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              icon,
-              size: 30.0,
-              color: color,
+            child: Container(
+              child: SvgPicture.asset(
+                icon,
+                semanticsLabel: 'Search',
+                height: 30,
+              ),
             ),
           ),
           Flexible(
