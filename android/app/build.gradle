@@ -47,8 +47,8 @@ android {
         applicationId "com.geeksaxis.pastQ"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 4007
-        versionName '1.0.6'
+        versionCode 4008
+        versionName '1.0.7'
         multiDexEnabled true
     }
 
