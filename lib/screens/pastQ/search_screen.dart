@@ -3,7 +3,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:pastq/core/service_injector/service_injector.dart';
 import 'package:pastq/shared/models/course_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pastq/screens/question_screen.dart';
+import 'package:pastq/screens/pastQ/question_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  static String assetName = 'assets/svg/search.svg';
+  static String assetName = 'assets/svg/department/search.svg';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pastq/core/service_injector/service_injector.dart';
-import 'package:pastq/screens/home_screen.dart';
+
+import 'home_screen.dart';
+import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String id = '/SplashScreen';
@@ -16,10 +18,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Timer(
       Duration(seconds: 4),
-      () {
+      () async {
+        bool? isOnboarding = await pastQservice.persistenceStorageservice
+            .getBoolValuesSF('isViewOnboardingScreen');
         pastQservice.routerService.popUntil(
           context,
-          HomePage(),
+          isOnboarding == true ? HomePage() : OnboardingScreen(),
         );
       },
     );

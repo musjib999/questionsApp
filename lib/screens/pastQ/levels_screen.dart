@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:pastq/screens/courses_screen.dart';
+import 'package:pastq/screens/pastQ/semester_screen.dart';
 import 'package:pastq/shared/global/global_var.dart';
-import 'package:pastq/shared/widgets/cards/semester_card.dart';
 
-class SemesterPage extends StatefulWidget {
-  static String id = 'semester';
+class LevelPage extends StatefulWidget {
+  static String id = 'level';
   final String depertment;
-  final String level;
-
-  SemesterPage({required this.depertment, required this.level});
+  LevelPage(this.depertment);
 
   @override
-  _SemesterPageState createState() => _SemesterPageState();
+  _LevelPageState createState() => _LevelPageState();
 }
 
-class _SemesterPageState extends State<SemesterPage> {
-  List semesters = ['First Semester', 'Second Semester'];
+class _LevelPageState extends State<LevelPage> {
+  List levels = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.level),
+        title: Text(widget.depertment),
         backgroundColor: Color(0xff445B83),
       ),
       body: Container(
@@ -30,21 +27,23 @@ class _SemesterPageState extends State<SemesterPage> {
             fit: BoxFit.fill,
           ),
         ),
-        child: ListView.builder(
-          itemCount: semesters.length,
+        child: ListView.separated(
+          itemCount: levels.length,
           itemBuilder: (context, index) {
-            return GestureDetector(
-              child: SemesterCard(title: semesters[index]),
+            return ListTile(
+              title: Text(
+                levels[index],
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      semester = semesters[index];
-                      return CoursesPage(
+                      level = levels[index];
+                      return SemesterPage(
                         depertment: widget.depertment,
-                        level: widget.level,
-                        semester: semesters[index],
+                        level: levels[index],
                       );
                     },
                   ),
@@ -52,6 +51,9 @@ class _SemesterPageState extends State<SemesterPage> {
               },
             );
           },
+          separatorBuilder: (context, index) => Divider(
+            color: Colors.white,
+          ),
         ),
       ),
     );

@@ -20,10 +20,17 @@ dependencies:
   font_awesome_flutter: ^9.1.0
   argon_buttons_flutter: ^1.0.6
   # file_picker: ^3.0.3
+  introduction_screen: ^2.1.0
   advance_pdf_viewer: ^2.0.0
+  
   rflutter_alert: ^2.0.2
   flutter_typeahead: ^3.2.0
   flutter_svg: ^0.22.0
+
+  #file
+  screenshot: ^1.2.1
+  share: ^2.0.4
+  image_cropper: ^1.4.1
 
   #firebase plugins
   firebase_core: ^1.4.0
@@ -31,6 +38,9 @@ dependencies:
   firebase_storage: ^10.0.1
   cloud_firestore: ^2.4.0
   
+  #local storage
+  shared_preferences: ^2.0.8
+  path_provider: ^2.0.2
  
 
 dev_dependencies:
@@ -45,6 +55,7 @@ flutter:
 
   assets:
     - assets/svg/
+    - assets/svg/department/
     - assets/images/
     - assets/json/
   

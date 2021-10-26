@@ -38,7 +38,7 @@ class DepertmentCard extends StatelessWidget {
             child: Container(
               child: SvgPicture.asset(
                 icon,
-                semanticsLabel: 'Search',
+                semanticsLabel: title,
                 height: 30,
               ),
             ),
