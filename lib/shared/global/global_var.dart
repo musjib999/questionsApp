@@ -1,3 +1,5 @@
+import 'package:screenshot/screenshot.dart';
+
 String semester = '';
 String level = '';
 
@@ -10,3 +12,5 @@ List<String> depertments = [
   'Cyber Security',
   'Information Technology'
 ];
+
+ScreenshotController screenshotController = ScreenshotController();

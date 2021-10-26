@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pastq/screens/unavailableCourses_screen.dart';
+import 'package:pastq/core/service_injector/service_injector.dart';
+import 'package:pastq/screens/pastQ/unavailableCourses_screen.dart';
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:pastq/shared/global/global_var.dart';
+import 'package:pastq/shared/themes/colors.dart';
+import 'package:screenshot/screenshot.dart';
 
 class QuestionPage extends StatelessWidget {
   QuestionPage({required this.courseTitle, required this.questionUrl});
@@ -12,7 +16,15 @@ class QuestionPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('$courseTitle'),
-        backgroundColor: Color(0xff445B83),
+        backgroundColor: AppColors.primaryDarkAsh,
+        actions: [
+          IconButton(
+            onPressed: () =>
+                pastQservice.screenshotService.screenshotAndRoute(context),
+            icon: Icon(Icons.share),
+            tooltip: 'Share',
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -84,34 +96,14 @@ class _QuestionPdfState extends State<QuestionPdf> {
                 color: Colors.white,
               ),
             )
-          : PDFViewer(
-              document: doc,
-              pickerButtonColor: Color(0xff445B83),
-              zoomSteps: 3,
+          : Screenshot(
+              controller: screenshotController,
+              child: PDFViewer(
+                document: doc,
+                pickerButtonColor: Color(0xff445B83),
+                zoomSteps: 3,
+              ),
             ),
     );
   }
 }
-
-
-//  if (!snapshot.hasData) {
-//           return Scaffold(
-//             appBar: AppBar(
-//               title: Text('Loading...'),
-//               backgroundColor: Color(0xff445B83),
-//             ),
-//             body: Center(
-//               child: CircularProgressIndicator(),
-//             ),
-//           );
-//         }
-//         return Scaffold(
-//           appBar: AppBar(
-//             title: Text('${snapshot.data}'),
-//             backgroundColor: Color(0xff445B83),
-//           ),
-//           // body: QuestionPdf(
-//           //   questionUrl: '${snapshot.data}',
-//           // ),
-//         );
-//       },

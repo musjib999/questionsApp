@@ -9,6 +9,10 @@ class ServiceInjector {
   DialogInfoService dialogInfoService = DialogInfoService();
   PersistenceStorageservice persistenceStorageservice =
       PersistenceStorageservice();
+  TimerService timerService = TimerService();
+  ShareService shareService = ShareService();
+  ScreenshotService screenshotService = ScreenshotService();
+  UtilityService utilityService = UtilityService();
 }
 
 ServiceInjector pastQservice = ServiceInjector();

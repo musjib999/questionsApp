@@ -4,3 +4,7 @@ export 'file_picker_service.dart';
 export 'router_service.dart';
 export 'dialog_info_service.dart';
 export 'persistence_storage_service.dart';
+export 'timer_service.dart';
+export 'share_service.dart';
+export 'screenshot_service.dart';
+export 'utility_service.dart';

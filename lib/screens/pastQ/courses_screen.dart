@@ -2,9 +2,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pastq/core/service_injector/service_injector.dart';
-import 'package:pastq/screens/question_screen.dart';
+import 'package:pastq/screens/pastQ/question_screen.dart';
 import 'package:pastq/core/services/dropdown_service.dart';
-import 'package:pastq/screens/search_screen.dart';
+import 'package:pastq/screens/pastQ/search_screen.dart';
 import 'package:pastq/shared/global/global_var.dart';
 import 'package:pastq/core/services/database_service.dart';
 

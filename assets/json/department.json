@@ -1,22 +1,22 @@
 [
     {
         "name": "General Studies And Entrepreneurship",
-        "svg": "assets/svg/gsp.svg"
+        "svg": "assets/svg/department/gsp.svg"
     },
     {
         "name": "Computer Science",
-        "svg": "assets/svg/csc.svg"
+        "svg": "assets/svg/department/csc.svg"
     },
     {
         "name": "Cyber Security",
-        "svg": "assets/svg/cbs.svg"
+        "svg": "assets/svg/department/cbs.svg"
     },
     {
         "name": "Software Engineering",
-        "svg": "assets/svg/swe.svg"
+        "svg": "assets/svg/department/swe.svg"
     },
     {
         "name": "Information Technology",
-        "svg": "assets/svg/ift.svg"
+        "svg": "assets/svg/department/ift.svg"
     }
 ]
