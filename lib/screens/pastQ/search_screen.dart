@@ -13,7 +13,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  static String assetName = 'assets/svg/department/search.svg';
+  static String assetName = 'assets/svg/fcsit/search.svg';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,13 +54,13 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                       suggestionsCallback:
                           pastQservice.databaseService.getQuestionSuggestion,
-                      itemBuilder: (context, Course? suggestion) {
+                      itemBuilder: (context, CourseModel? suggestion) {
                         final course = suggestion!;
                         return ListTile(
                           title: Text(course.title),
                         );
                       },
-                      onSuggestionSelected: (Course? suggestion) {
+                      onSuggestionSelected: (CourseModel? suggestion) {
                         pastQservice.routerService.nextRoute(
                             context,
                             QuestionPage(

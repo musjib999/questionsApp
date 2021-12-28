@@ -4,7 +4,7 @@ description: A new Flutter project.
 
 publish_to: 'none' 
 
-version: 1.0.6+4007
+version: 1.0.8+4009
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -55,7 +55,8 @@ flutter:
 
   assets:
     - assets/svg/
-    - assets/svg/department/
+    - assets/svg/fcsit/
+    - assets/svg/fees/
     - assets/images/
     - assets/json/
   

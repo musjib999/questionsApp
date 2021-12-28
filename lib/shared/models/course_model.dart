@@ -1,14 +1,18 @@
-class Course {
+class CourseModel {
   final String title;
+  final String code;
   final String questionUrl;
 
-  const Course({
+  const CourseModel({
     required this.title,
+    required this.code,
     required this.questionUrl,
   });
 
-  static Course fromJson(Map<String, dynamic> json) =>
-      Course(title: json['title'], questionUrl: json['question']);
+  static CourseModel fromJson(Map<String, dynamic> json) => CourseModel(
+      title: json['title'],
+      code: json['courseCode'],
+      questionUrl: json['question']);
 }
 
 // class UserApi {

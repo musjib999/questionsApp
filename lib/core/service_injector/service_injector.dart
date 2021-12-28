@@ -1,7 +1,7 @@
 import 'package:pastq/core/services/service_exports.dart';
 
 class ServiceInjector {
-  DropDownHelper dropDownHelper = DropDownHelper();
+  FirestoreService firestoreService = FirestoreService();
   DatabaseService databaseService = DatabaseService();
   FilePickerHelper filePickerHelper = FilePickerHelper();
 
