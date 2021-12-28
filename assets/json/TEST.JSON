@@ -1,0 +1,50 @@
+[
+    {
+        "name": "General Studies And Entrepreneurship",
+        "svg": "assets/svg/fcsit/gsp.svg"
+    },
+    {
+        "name": "Architecture",
+        "svg": "assets/svg/fees/arc.svg"
+    },
+    {
+        "name": "Computer Science",
+        "svg": "assets/svg/fcsit/csc.svg"
+    },
+    {
+        "name": "Cyber Security",
+        "svg": "assets/svg/fcsit/cbs.svg"
+    },
+    {
+        "name": "Environmental Management",
+        "svg": "assets/svg/fees/env.svg"
+    },
+    {
+        "name": "Estate Management",
+        "svg": "assets/svg/fees/esm.svg"
+    },
+    {
+        "name": "Geography",
+        "svg": "assets/svg/fees/geo.svg"
+    },
+    {
+        "name": "Geology",
+        "svg": "assets/svg/fees/geol.svg"
+    },
+    {
+        "name": "Information Technology",
+        "svg": "assets/svg/fcsit/ift.svg"
+    },
+    {
+        "name": "Quantity Surveying",
+        "svg": "assets/svg/fees/qs.svg"
+    },
+    {
+        "name": "Software Engineering",
+        "svg": "assets/svg/fcsit/swe.svg"
+    },
+    {
+        "name": "Urban and Regional Planning",
+        "svg": "assets/svg/fees/urp.svg"
+    }
+]

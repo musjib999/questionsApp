@@ -4,7 +4,6 @@ import 'package:pastq/screens/splash_screen.dart';
 import 'package:pastq/shared/themes/colors.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 

@@ -1,6 +1,8 @@
 // import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:pastq/core/service_injector/service_injector.dart';
+import 'package:pastq/core/services/utility_service.dart';
+import 'package:pastq/shared/global/global_var.dart';
 // import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Upload extends StatefulWidget {
@@ -12,6 +14,10 @@ class _UploadState extends State<Upload> {
   String courseCode = '';
   String courseTitle = '';
   String year = '';
+
+  List<String> levels = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
+  List<String> semesters = ['First Semester', 'Second Semester'];
+
   final _formKey = GlobalKey<FormState>();
   TextEditingController _courseCodeController = TextEditingController();
   TextEditingController _courseTitleController = TextEditingController();
@@ -53,10 +59,10 @@ class _UploadState extends State<Upload> {
                     style: TextStyle(color: Colors.grey),
                   ),
                   items:
-                      pastQservice.dropDownHelper.getDepertmentDropdownItems(),
+                      pastQservice.utilityService.getDropdownItems(depertments),
                   onChanged: (value) {
                     setState(() {
-                      pastQservice.dropDownHelper.selectedDepertment = value;
+                      selectedDepartment = value;
                     });
                   },
                 ),
@@ -78,10 +84,10 @@ class _UploadState extends State<Upload> {
                     'Level',
                     style: TextStyle(color: Colors.grey),
                   ),
-                  items: pastQservice.dropDownHelper.getLevelDropdownItems(),
+                  items: pastQservice.utilityService.getDropdownItems(levels),
                   onChanged: (value) {
                     setState(() {
-                      pastQservice.dropDownHelper.selectedLevel = value;
+                      selectedLevel = value;
                     });
                   },
                 ),
@@ -104,10 +110,11 @@ class _UploadState extends State<Upload> {
                     style: TextStyle(color: Colors.grey),
                   ),
                   // value: _dropdownHelper.selectedSemester,
-                  items: pastQservice.dropDownHelper.getSemesterDropdownItems(),
+                  items:
+                      pastQservice.utilityService.getDropdownItems(semesters),
                   onChanged: (value) {
                     setState(() {
-                      pastQservice.dropDownHelper.selectedSemester = value;
+                      selectedSemester = value;
                     });
                   },
                 ),

@@ -4,7 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:pastq/shared/themes/colors.dart';
 
+String selectedDepartment = '';
+String selectedLevel = '';
+String selectedSemester = '';
+String selectedYear = '2020';
+
 class UtilityService {
+  List<DropdownMenuItem> getDropdownItems(List items) {
+    List<DropdownMenuItem> dropdowmItems = [];
+
+    for (String item in items) {
+      var newItem = DropdownMenuItem(child: Text(item), value: item);
+      dropdowmItems.add(newItem);
+    }
+    return dropdowmItems;
+  }
+
   Future<File?> cropImage(String imagePath) async {
     return await ImageCropper.cropImage(
       sourcePath: imagePath,
